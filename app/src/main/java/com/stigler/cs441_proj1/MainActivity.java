@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView helloText;
     Button colorButton;
+    SeekBar fontBar;
+    TextView fontSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +22,34 @@ public class MainActivity extends AppCompatActivity {
 
         helloText = (TextView) findViewById(R.id.helloText);
         colorButton = (Button) findViewById(R.id.colorButton);
+        fontBar = (SeekBar) findViewById(R.id.fontBar);
+        fontSize = (TextView) findViewById(R.id.fontSize);
+
+        fontBar.setOnSeekBarChangeListener(seekBarChangeListener);
     }
+
+    SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener()
+    {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+        {
+            fontSize.setText("Font: " + seekBar.getProgress());
+            helloText.setTextSize(seekBar.getProgress());
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar)
+        {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar)
+        {
+            fontSize.setText("Font: " + seekBar.getProgress());
+            helloText.setTextSize(seekBar.getProgress());
+        }
+    };
 
     public void onColorClick(View view)
     {
