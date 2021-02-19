@@ -2,9 +2,16 @@ package com.stigler.cs441_proj1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -14,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button colorButton;
     SeekBar fontBar;
     TextView fontSize;
+    ImageView JA17;
+    Button fadeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +33,45 @@ public class MainActivity extends AppCompatActivity {
         colorButton = (Button) findViewById(R.id.colorButton);
         fontBar = (SeekBar) findViewById(R.id.fontBar);
         fontSize = (TextView) findViewById(R.id.fontSize);
+        JA17 = (ImageView) findViewById(R.id.JA17);
+        fadeButton = (Button) findViewById(R.id.fadeButton);
 
         fontBar.setOnSeekBarChangeListener(seekBarChangeListener);
+    }
+
+    public void onFadeCLick(View view)
+    {
+        JA17.setAlpha((float) 1.0);
+        fadeOutAni(JA17);
+    }
+
+    public void fadeOutAni (View view)
+    {
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setDuration(2000);
+
+        fadeOut.setAnimationListener((new Animation.AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                JA17.setAlpha((float) 0.0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+
+            }
+        }));
+        view.startAnimation(fadeOut);
     }
 
     SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener()
