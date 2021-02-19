@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar)
         {
-            fontSize.setText("Font: " + seekBar.getProgress());
-            helloText.setTextSize(seekBar.getProgress());
+
         }
     };
 
