@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         fontBar.setOnSeekBarChangeListener(seekBarChangeListener);
     }
 
-    public void onFadeCLick(View view)
+    public void onFadeClick(View view)
     {
         JA17.setAlpha((float) 1.0);
         fadeOutAni(JA17);

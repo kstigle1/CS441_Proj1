@@ -81,7 +81,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="225dp"
         android:text="Click for surprise!"
-        android:onClick="onFadeCLick"
+        android:onClick="onFadeClick"
         />
 
 
